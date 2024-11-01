@@ -5,6 +5,7 @@ using namespace std;
 
 void matrix_mul(int matrix1[][3], int matrix2[][3]);
 void matrix_sum(int matrix1[][3], int matrix2[][3]);
+void print(int matrix[][3]);
 
 int main() {
   char op;
@@ -14,7 +15,7 @@ int main() {
        << "+ : addition" << endl
        << "* : multiplication" << endl
        << "------------------" << endl;
-  cout << "Selet an  operator: ";
+  cout << "Selet an operator: ";
   cin >> op;
   cout << "Input matrix1: ";
   for (int i = 0; i < 3; i++) {
@@ -44,13 +45,7 @@ void matrix_mul(int matrix1[][3], int matrix2[][3]) {
       }
     }
   }
-
-  for (int i = 0; i < 3; i++) {
-    for (int j = 0; j < 3; j++) {
-      cout << result[i][j] << " ";
-    }
-    cout << endl;
-  }
+  print(result);
 }
 
 void matrix_sum(int matrix1[][3], int matrix2[][3]) {
@@ -61,10 +56,14 @@ void matrix_sum(int matrix1[][3], int matrix2[][3]) {
       result[i][j] = matrix1[i][j] + matrix2[i][j];
     }
   }
+  print(result);
+}
 
+void print(int matrix[][3]) {
+  cout << "Answer: " << endl;
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {
-      cout << result[i][j] << " ";
+      cout << matrix[i][j] << " ";
     }
     cout << endl;
   }
