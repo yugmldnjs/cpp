@@ -4,45 +4,56 @@
 using namespace std;
 
 template <typename T>
-class my_queue {
-  struct list {
-    T data;
-    list *next = NULL;
-  };
-  list *head;
-  list *tail;
-
- public:
-  my_queue() { head = tail = NULL; }
-
-  void Enqueue(T data) {
-    list *p = new list;
-    p->data = data;
-
-    if (head == NULL) {
-      head = tail = p;
-    } else {
-      tail->next = p;
-      tail = p;
-    }
-  }
-
-  T Dequeue() {
-    T result = Peek();
-    head = head->next;
-
-    if (head == NULL) {
-      tail = NULL;
-    }
-    return result;
-  }
-
-  T Peek() { return head->data; }
+struct list {
+  T data;
+  list *next = NULL;
 };
 
-int main()
+template <typename T>
+class my_queue {
+  list<T> *head;
+  list<T> *tail;
 
-{
+ public:
+  my_queue();
+  void Enqueue(T data);
+  T Dequeue();
+  T Peek();
+};
+
+template <typename T>
+my_queue<T>::my_queue() : head(NULL), tail(NULL) {}
+
+template <typename T>
+void my_queue<T>::Enqueue(T data) {
+  list<T> *p = new list<T>;
+  p->data = data;
+
+  if (head == NULL) {
+    head = tail = p;
+  } else {
+    tail->next = p;
+    tail = p;
+  }
+}
+
+template <typename T>
+T my_queue<T>::Dequeue() {
+  T result = Peek();
+  head = head->next;
+
+  if (head == NULL) {
+    tail = NULL;
+  }
+  return result;
+}
+
+template <typename T>
+T my_queue<T>::Peek() {
+  return head->data;
+}
+
+int main() {
   my_queue<int> q;
 
   q.Enqueue(10);
