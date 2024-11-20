@@ -47,13 +47,11 @@ class my_list {
 
   // 처음부터 지정 위치까지의 리스트 길이 반환
   int length(node* start, node* end) {
-    int cnt = 0;
-    if (start == end) return 0;
+    int cnt = 1;
     while (start != end) {
       start = start->next;
       cnt++;
     }
-    cnt++;
     return cnt;
   }
 };
